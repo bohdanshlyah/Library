@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for author in object_list %}
+<div class="card w-50 mt-2">
+    <div class="card-body">
+        <h5 class="card-title">Author #{{author.id}}</h5>
+        <p class="card-text">{{author.name }} {{ author.surname }}</p>
+        <a href="{% url 'author_detail' pk=author.id %}" class="btn btn-secondary">Details</a>
+
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

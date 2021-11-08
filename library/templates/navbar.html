@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="{% url 'index' %}">The Great Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'book:books_list' %}">Books <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'authors_list' %}">Authors</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'auth:user_list' %}">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'order:order_list' %}">Orders</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'order:order_create' %}">Add Order</a>
+        </li>
+        {% endif %}
+      </ul>
+      <div id="logged_user" class="div-inline my-2 my-lg-0">
+        {% if user.is_authenticated %}
+          <p>
+            Hi, <a href="{% url 'auth:user_profile' request.user.id %}">{% firstof user.first_name user.email %}</a>
+            <a href="{% url 'auth:logout' %}"> | (logout)</a>
+          </p>
+          
+        {% else %}
+        <a href="{% url 'auth:auth'%}">LogIn</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>

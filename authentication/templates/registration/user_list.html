@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for user in object_list %}
+        <div class="card w-50 mt-2">
+            <div class="card-body">
+            <h5 class="card-title">User #{{user.id}}</h5>
+            <p class="card-text">{{user.first_name }}, {{ user.last_name }}, {{ user.email }} </p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

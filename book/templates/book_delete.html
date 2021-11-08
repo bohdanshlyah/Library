@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    Delete book?
+{% endblock %}
+{% block content %}
+<div class="card w-50">
+    <div class="card-body">
+        <form  method="post">
+            {% csrf_token %}
+                <h4 class="card-title"> Delete Book #{{book.id}}?</h4>
+                <p class="card-text">Are you sure you want to delete this book?</p>
+        
+                <input  type="submit"  value="Submit" class="btn btn-success"  />
+        </form>
+    </div>
+</div>
+{% endblock %}

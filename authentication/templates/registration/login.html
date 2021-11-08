@@ -1,0 +1,82 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type='text/css' href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type='text/css' href="{% static 'css/login.css' %}">
+        <link rel="stylesheet" type='text/css' href="{% static 'css/toastr.css' %}">
+        <link rel="stylesheet" type='text/css' href="{% static 'css/toastr.min.css' %}">
+    </head>
+    <body>
+        <script src="{% static 'js/jquery-3.3.1.js'%}"></script>
+        <script src="{% static 'js/toastr.min.js'%}"></script>
+        <script src="{% static 'js/login.js' %}"></script>
+
+        {% if form.errors %}
+        <script type="text/javascript">
+            toastr.error("Your credentials doesn't match.");
+        </script>
+        {% endif %}
+
+        {% if signup_form.errors %}
+        <script type="text/javascript">
+            toastr.error("There is an error.");
+        </script>
+        {% endif %}
+
+<div class="login-reg-panel">
+    <div class="login-info-box">
+        <h2>Have an account?</h2>
+        <p>Press this button for logging in.</p>
+        <label id="label-register" for="log-reg-show">Login</label>
+        <input type="radio" name="active-log-panel" id="log-reg-show" checked="checked">
+    </div>
+                        
+    <div class="register-info-box">
+        <h2>Don't have an account?</h2>
+        <p>Press this button for creating an account.</p>
+        <label id="label-login" for="log-login-show">Register</label>
+        <input type="radio" name="active-log-panel" id="log-login-show" >
+    </div>
+                        
+    <div class="white-panel">
+        <form method="post" action="{% url 'auth:login' %}">
+            {% csrf_token %}
+            <div class="login-show">
+                <h2>LOGIN</h2>
+                <input id="{{ form.username.id_for_label }}" type="text" placeholder="Email" name="{{ form.username.html_name }}" required>
+                <input id="{{ form.password.id_for_label }}" type="password" placeholder="Password" name="{{ form.password.html_name }}" required>
+               
+                <input type="submit" value="login" />
+                <input type="hidden" name="next" value="{{ next }}" />
+            
+                <a href="">Forgot password?</a>
+            </div>
+        </form>
+        <form method='POST' action="{% url 'auth:register' %}">
+            {% csrf_token %}
+            <div class="register-show">
+                <h2>REGISTER</h2>
+                <input id="{{ signup_form.first_name.id_for_label }}" type="text" placeholder="First Name" name="{{ signup_form.first_name.html_name }}" required>
+                <input id="{{ signup_form.middle_name.id_for_label }}" type="text" placeholder="Middle Name" name="{{ signup_form.middle_name.html_name }}" required>
+                <input id="{{ signup_form.last_name.id_for_label }}" type="text" placeholder="Last Name" name="{{ signup_form.last_name.html_name }}" required>
+                <input id="{{ signup_form.email.id_for_label }}" type="text" placeholder="Email" name="{{ signup_form.email.html_name }}" required>
+                <input id="{{ signup_form.password1.id_for_label }}" type="password" placeholder="Password" name="{{ signup_form.password1.html_name }}" required>
+                <input id="{{ signup_form.password2.id_for_label }}" type="password" placeholder="Confirm Password" name="{{ signup_form.password2.html_name }}" required>
+                <input type="submit" value="sign_up"> 
+                <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+        </form>
+    </div>
+</div>
+        {% if flag %}
+        <script>
+            changeClass();
+            console.log('{{register}}')
+        </script>
+        {% endif %}
+    </body>
+</html>
+
+
+
+

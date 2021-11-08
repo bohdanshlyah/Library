@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card w-50 mt-2">
+    <div class="card-body">
+    <h5 class="card-title">Order #{{order.id}} </h5>
+    <p class="card-text">{{order.created_at|date:"d, M, Y"}} {% firstof order.user.first_name order.user.email %} placed this order. </p>
+    <p class="card-text">"{{ order.book.name }}" should be returned before {{ order.plated_end_at|date:"d, M, Y"}}</p>
+    {% if user.role == 1 %}
+    <a href="{% url 'order:order_update' pk=order.id %}" class="btn btn-secondary">Update</a>
+    <a href="{% url 'order:order_delete' pk=order.id %}" class="btn btn-danger">Remove</a>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

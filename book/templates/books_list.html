@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for book in object_list %}
+<div class="card w-50 mt-2">
+    <div class="card-body">
+        <h5 class="card-title">
+                Book #{{book.id}}
+        </h5>
+        <p class="card-text"><b>{{book.name }}</b> <br>
+            {{ book.description }} <br>
+            Amount: {{ book.count }} </p>
+        <a href="{% url 'book:book_detail' pk=book.id %}" class="btn btn-secondary">Details</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

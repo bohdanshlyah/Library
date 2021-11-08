@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method = "POST">
+    {% csrf_token %}
+    <div class="card w-75 mt-2">
+    <div class="card-body">
+        {{ form|crispy }}
+    </div>
+<input type="submit" class='btn btn-success' value="Update bio">
+</form>
+{% endblock %}

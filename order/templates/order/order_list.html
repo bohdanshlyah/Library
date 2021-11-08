@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for order in object_list %}
+        <div class="card w-50 mt-2">
+            <div class="card-body">
+            <h5 class="card-title">Order #{{order.id}}</h5>
+            <p class="card-text">This order was made by {{order.user.email}} at {{order.created_at|date:"d, M, Y"}} </p>
+            <a href="{% url 'order:order_detail' pk=order.id %}" class="btn btn-primary">See details</a>
+            </div>
+        </div>
+    {% endfor %}
+
+   
+   {% endblock %}

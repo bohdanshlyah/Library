@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card w-50 mt-2">
+    <div class="card-body">
+    <h5 class="card-title">Author #{{author.id}} </h5>
+    <p class="card-text">{{author.name }} {{ author.surname }}</p>
+    {% if user.role == 1 %}
+    <a href="{% url 'author_update' pk=author.id %}" class="btn btn-secondary">Update</a>
+    <a href="{% url 'author_delete' pk=author.id %}" class="btn btn-danger">Remove</a>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

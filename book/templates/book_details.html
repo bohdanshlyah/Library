@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card w-50 mt-2">
+    <div class="card-body">
+    <h5 class="card-title">Book #{{book.id}} </h5>
+    <p class="card-text"><b>{{book.name }}</b> <br>
+        {{ book.description }} <br>
+        Amount: {{ book.count }} </p>    {% if user.role == 1 %}
+    <a href="{% url 'book:book_update' pk=book.id %}" class="btn btn-secondary">Update</a>
+    <a href="{% url 'book:book_delete' pk=book.id %}" class="btn btn-danger">Remove</a>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
